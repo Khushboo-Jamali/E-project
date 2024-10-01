@@ -1,2 +1,2 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "rapid_rescue");
+$conn = mysqli_connect("localhost", "root", "", "online_shopping");

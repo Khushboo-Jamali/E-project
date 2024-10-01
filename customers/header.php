@@ -143,12 +143,13 @@ if (!isset($_SESSION['userId'])) {
         </a>
         <ul id="emp-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="add_ambulance.php">
+            <a href="add-order.php">
               <i class="bi bi-circle"></i><span>Add Order</span>
             </a>
           </li>
+
           <li>
-            <a href="view_ambulance.php">
+            <a href="view-orders.php">
               <i class="bi bi-circle"></i><span>View Orders</span>
             </a>
           </li>
@@ -164,7 +165,7 @@ if (!isset($_SESSION['userId'])) {
         <ul id="de-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
           <li>
-            <a href="view_driver.php">
+            <a href="view_details.php">
               <i class="bi bi-circle"></i><span>View Order Details</span>
             </a>
           </li>
@@ -180,13 +181,13 @@ if (!isset($_SESSION['userId'])) {
         <ul id="pat-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
           <li>
-            <a href="view_request.php">
+            <a href="add-deliverie.php">
               <i class="bi bi-circle"></i><span>Add Deliveries</span>
             </a>
           </li>
 
           <li>
-            <a href="view_request.php">
+            <a href="view-deliverie.php">
               <i class="bi bi-circle"></i><span>View Deliveries</span>
             </a>
           </li>
@@ -200,12 +201,12 @@ if (!isset($_SESSION['userId'])) {
         </a>
         <ul id="dis-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="add_emt.php">
+            <a href="add-product.php">
               <i class="bi bi-circle"></i><span>Add Product</span>
             </a>
           </li>
           <li>
-            <a href="view_emt.php">
+            <a href="view-product.php">
               <i class="bi bi-circle"></i><span>View Products</span>
             </a>
           </li>

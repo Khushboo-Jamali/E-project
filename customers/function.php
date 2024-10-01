@@ -6,7 +6,7 @@ session_start();
 include "config.php";
 
 // admin profile update
-if (isset($_POST['up_admin'])) {
+if (isset($_POST['up_customer'])) {
     $id = $_POST['id'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -17,13 +17,13 @@ if (isset($_POST['up_admin'])) {
     $tmp_name = $_FILES['img']['tmp_name'];
     $folder = "images/" . $img_name;
     if (move_uploaded_file($tmp_name, $folder)) {
-        $sql = "UPDATE `users` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phonenumber`='$phone', `address`='$add' ,`pic`='$folder' WHERE user_id ='$id'";
+        $sql = "UPDATE `customers` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phone`='$phone', `address`='$add' ,`pic`='$folder' WHERE customer_id ='$id'";
         $qurey = mysqli_query($conn, $sql);
         if ($qurey) {
             header("location:user_profile.php");
         }
     } else {
-        $sql = "UPDATE `users` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phonenumber`='$phone', `address`='$add'  WHERE user_id ='$id'";
+        $sql = "UPDATE `customers` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phone`='$phone', `address`='$add'  WHERE customer_id ='$id'";
         $qurey = mysqli_query($conn, $sql);
         header("location:user_profile.php");
     }
@@ -64,38 +64,65 @@ if (isset($_POST['addambu'])) {
     }
 }
 
-// add driver
-if (isset($_POST['driver'])) {
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $phone = $_POST['phone'];
-    $sql = "INSERT INTO `drivers`( `first_name`, `last_name`, `phonenumber`)
-     VALUES ('$fname','$lname','$phone')";
+if (isset($_POST['update_product'])) {
+    $product_id = $_POST['id'];
+    $product_name = $_POST['product_name'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $category = $_POST['category'];
+
+    // SQL query to update the product
+    $sql = "UPDATE `products` 
+            SET `product_name` = '$product_name', `description` = '$description', `price` = '$price', `category` = '$category' 
+            WHERE `product_id` = '$product_id'";
+
     $res = mysqli_query($conn, $sql);
     if ($res) {
-        header('location:add_driver.php?msg=driver added successfully');
+        header('Location: view-products.php?msg=Product updated successfully');
+        exit();
     } else {
-        header('location:add_driver.php?msg=driver not added');
+        header('Location: view-products.php?msg=Product not updated');
+        exit();
     }
 }
 
+
+// add driver
+// if (isset($_POST['driver'])) {
+//     $fname = $_POST['fname'];
+//     $lname = $_POST['lname'];
+//     $phone = $_POST['phone'];
+//     $sql = "INSERT INTO `drivers`( `first_name`, `last_name`, `phonenumber`)
+//      VALUES ('$fname','$lname','$phone')";
+//     $res = mysqli_query($conn, $sql);
+//     if ($res) {
+//         header('location:add_driver.php?msg=driver added successfully');
+//     } else {
+//         header('location:add_driver.php?msg=driver not added');
+//     }
+// }
+
 // active and deactive driver
-if (isset($_GET['Did'])) {
-    $id = $_GET['Did'];
-    $status = $_GET['status'];
-    if ($status == "Active") {
-        $driver_up = "UPDATE drivers SET STATUS = 'Deactive' WHERE driver_id = '$id'";
-    } else {
-        $driver_up = "UPDATE drivers SET STATUS = 'Active' WHERE driver_id = '$id'";
-    }
-    if (mysqli_query($conn, $driver_up) == true) {
-        header("location:view_driver.php?msg=status update successfully");
-    } else {
-        header("location:view_driver.php?msg=status not update successfully");
-    }
-}
+// if (isset($_GET['Did'])) {
+//     $id = $_GET['Did'];
+//     $status = $_GET['status'];
+//     if ($status == "Active") {
+//         $driver_up = "UPDATE drivers SET STATUS = 'Deactive' WHERE driver_id = '$id'";
+//     } else {
+//         $driver_up = "UPDATE drivers SET STATUS = 'Active' WHERE driver_id = '$id'";
+//     }
+//     if (mysqli_query($conn, $driver_up) == true) {
+//         header("location:view_driver.php?msg=status update successfully");
+//     } else {
+//         header("location:view_driver.php?msg=status not update successfully");
+//     }
+// }
+
+
+
+
 // update driver
-if (isset($_POST['up_driver'])) {
+if (isset($_POST['up_order'])) {
     $id = $_POST['id'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -134,19 +161,19 @@ if (isset($_POST['up_ambu'])) {
 }
 
 
-// delete ambulance like active deactive
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+// update delivery  like active deactive
+if (isset($_GET['delivery'])) {
+    $id = $_GET['delivery'];
     $status = $_GET['status'];
     if ($status == "Completed") {
-        $requests = "UPDATE emergencyrequests SET status = 'Uncompleted' WHERE request_id = '$id'";
+        $requests = "UPDATE deliveries SET delivery_status = 'Uncompleted' WHERE delivery_id = '$id'";
     } else {
-        $requests = "UPDATE emergencyrequests SET status= 'Completed' WHERE  request_id = '$id'";
+        $requests = "UPDATE deliveries SET delivery_status= 'Completed' WHERE  delivery_id = '$id'";
     }
     if (mysqli_query($conn,  $requests) == true) {
-        header("location:view_request.php?msg=status update successfully");
+        header("location:view-deliverie.php?msg=status update successfully");
     } else {
-        header("location:view_request.php?msg=status not update successfully");
+        header("location:view-deliverie.php?msg=status not update successfully");
     }
 }
 

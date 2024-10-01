@@ -1,6 +1,6 @@
 <?php  include "header.php";?>
 <?php
- include = "config.php";
+ include  "config.php";
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
