@@ -1,29 +1,30 @@
 <?php
-include "./config.php";
-if(isset($_POST["signup"])){
+
+include "config.php";
+if (isset($_POST["signup"])) {
     $fname = $_POST["fname"];
     $lname = $_POST["lname"];
     $email = $_POST["email"];
-    $contact = $_POST['phone'];
     $password = md5($_POST['password']);
-    $dob = $_POST['dob'];
+    $contact = $_POST['phone'];
+    // $dob = $_POST['dob'];
     $address = $_POST['add'];
     $img_name = $_FILES["img"]["name"];
     $tmp_name = $_FILES["img"]["tmp_name"];
     $type = $_FILES["img"]["type"];
     $size = $_FILES["img"]["size"];
     $error = $_FILES["img"]["error"];
-    $allowed_types = ['jpg','jpeg','png'];
-    $file_ext = strtolower(pathinfo($img_name,PATHINFO_EXTENSION));
-    if(in_array($file_ext,$allowed_types)){
-        if($size <= 2 * 1024 * 1024){
-            if($error === 0){
-                $newName = uniqid('',true) . $file_ext;
+    $allowed_types = ['jpg', 'jpeg', 'png'];
+    $file_ext = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+    if (in_array($file_ext, $allowed_types)) {
+        if ($size <= 2 * 1024 * 1024) {
+            if ($error === 0) {
+                $newName = uniqid('', true) . $file_ext;
                 $folder = "images/" . $newName;
-                move_uploaded_file($tmp_name,$folder);
-                $stmt = $conn->prepare("INSERT INTO users (firstname,lastname, email, phonenumber, password, date_of_birth, address, pic) VALUES (?,?,?,?,?,?,?,?)");
-                $stmt->bind_param("ssssssss", $fname,$lname,$email,$contact,$password,$dob,$address, $folder);
-            
+                move_uploaded_file($tmp_name, $folder);
+                $stmt = $conn->prepare("INSERT INTO customers (firstname,lastname, email, password, phone,  address, pic) VALUES (?,?,?,?,?,?,?)");
+                $stmt->bind_param("sssssss", $fname, $lname, $email, $password, $contact, $address, $folder);
+
                 if ($stmt->execute()) {
                     header("Location: signup.php?msg=signup-successfully");
                     exit();
@@ -32,16 +33,15 @@ if(isset($_POST["signup"])){
                     exit();
                 }
                 $stmt->close();
-            }else{
+            } else {
                 echo "error uploading file";
             }
-        }else{
+        } else {
             echo "file size is not valid";
         }
-    }else{
+    } else {
         echo "invalid file type!";
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -52,12 +52,12 @@ if(isset($_POST["signup"])){
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Rapid-Rescue_signUp </title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="images/logo.png" rel="icon">
-  <link href="images/logo.png" rel="images/logo.png">
+    <!-- Favicons -->
+    <link href="images/logo.png" rel="icon">
+    <link href="images/logo.png" rel="images/logo.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -83,23 +83,23 @@ if(isset($_POST["signup"])){
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     <style>
-  .input-box {
-    position: relative;
-  }
+        .input-box {
+            position: relative;
+        }
 
 
-  .input-box i {
-    position: absolute;
-    right: 20px;
-    /* Adjust as needed */
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    cursor: pointer;
-    color: #463e4b;
-    /* Adjust color as needed */
-  }
-</style>
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            /* Adjust as needed */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            cursor: pointer;
+            color: #463e4b;
+            /* Adjust color as needed */
+        }
+    </style>
 </head>
 
 <body>
@@ -149,10 +149,6 @@ if(isset($_POST["signup"])){
                                             <i class="bi bi-eye-slash-fill" id="eyeIcon"></i>
                                         </div>
 
-                                        <div class="input-box mb-3 my-1">
-                                            <label for="dateInput" class="form-label"></label>
-                                            <input type="date" class="form-control" name="dob" id="dateInput" required>
-                                        </div>
 
                                         <div class="mb-3">
                                             <label for="" class="form-label">Address</label>
@@ -179,7 +175,7 @@ if(isset($_POST["signup"])){
                                             }
                                             ?>
                                         </div>
-                                            <span>Have An Account Already <a href="login-user.php">login</a></span>   
+                                        <span>Have An Account Already <a href="login.php">login</a></span>
                                     </form>
 
                                 </div>
@@ -209,7 +205,7 @@ if(isset($_POST["signup"])){
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
-        document.getElementById("eyeIcon").addEventListener("click", function () {
+        document.getElementById("eyeIcon").addEventListener("click", function() {
             var passwordInput = document.getElementById("Password");
             var eyeIcon = document.getElementById("eyeIcon");
 

@@ -51,7 +51,7 @@ if (isset($_GET['msg'])) {
         <td>
 
           <a href="update-order.php?id=<?php echo $data['order_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
-          <a href="function.php?id=<?php echo $data['order_id'] ?>"><i class="bi bi-trash-fill text-danger"></i></a>
+          <a href="function.php?orderid=<?php echo $data['order_id'] ?>"><i class="bi bi-trash-fill text-danger"></i></a>
 
 
           <a href="add-order.php"> <i class="bx bxs-pencil"></i></a>

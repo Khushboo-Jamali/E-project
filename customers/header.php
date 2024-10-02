@@ -56,7 +56,7 @@ if (!isset($_SESSION['userId'])) {
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="./assets/img/apple-touch-icon.png" alt="">
-        <span class="d-none d-lg-block">Admin Dashboard</span>
+        <span class="d-none d-lg-block">Customer</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -220,12 +220,12 @@ if (!isset($_SESSION['userId'])) {
         </a>
         <ul id="st-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="add_emt.php">
+            <a href="add-stock.php">
               <i class="bi bi-circle"></i><span>Add Stock</span>
             </a>
           </li>
           <li>
-            <a href="view_emt.php">
+            <a href="view-stock.php">
               <i class="bi bi-circle"></i><span>View Stocks</span>
             </a>
           </li>

@@ -39,7 +39,7 @@ $res = mysqli_query($conn, $sql);
                         <td>
 
                             <a href="function.php?delivery=<?php echo $data['delivery_id'] ?>&status=<?php echo $data['delivery_status'] ?>"> <i class="bi bi-trash-fill text-danger"></i></a>
-                            <a href="function.php?delivery=<?php echo $data['delivery_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
+                            <a href="update-delivery.php?delivery=<?php echo $data['delivery_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
 
 
                             <a href="add-deliverie.php"> <i class="bx bxs-pencil"></i></a>

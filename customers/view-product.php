@@ -37,8 +37,8 @@ $res = mysqli_query($conn, $sql);
             <td><?php echo $data['price'] ?></td>
             <td><?php echo $data['category'] ?></td>
             <td>
-              <a href="update-product.php?product=<?php echo $data['product_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
-              <a href="function.php?Pid=<?php echo $data['product_id'] ?>"><i class="bi bi-trash-fill text-danger"></i></a>
+              <a href="update-product.php?p_id=<?php echo $data['product_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
+              <a href="function.php?p_delete=<?php echo $data['product_id'] ?>"><i class="bi bi-trash-fill text-danger"></i></a>
 
 
             </td>
