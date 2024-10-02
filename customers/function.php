@@ -186,6 +186,17 @@ if (isset($_GET['orderid'])) {
         header("location:view-orders.php");
     }
 }
+// delete feedback
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $del = "DELETE FROM `feedback` WHERE feed_id = '$id'";
+    $res = mysqli_query($conn, $del);
+    if ($res) {
+        header("location:view_feedback.php");
+    }
+}
+
+
 // update emt
 // if (isset($_POST['up_emt'])) {
 //     $id = $_POST['id'];
@@ -198,13 +209,4 @@ if (isset($_GET['orderid'])) {
 //     mysqli_query($conn, $sql);
 
 //     header("location:view_emt.php");
-// }
-// delete feedback
-// if (isset($_GET['delete'])) {
-//     $id = $_GET['delete'];
-//     $del = "DELETE FROM `feedback` WHERE feed_id = '$id'";
-//     $res = mysqli_query($conn, $del);
-//     if ($res) {
-//         header("location:view_feedback.php");
-//     }
 // }

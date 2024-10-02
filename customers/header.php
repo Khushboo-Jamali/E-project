@@ -234,7 +234,7 @@ if (!isset($_SESSION['userId'])) {
       </li><!-- End Forms Nav -->
 
 
-      <!-- 
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#feed" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>FeedBack</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -248,7 +248,7 @@ if (!isset($_SESSION['userId'])) {
           </li>
 
         </ul>
-      </li> -->
+      </li>
       <!-- End Forms Nav -->
 
 
