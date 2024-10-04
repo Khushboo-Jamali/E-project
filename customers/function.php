@@ -162,11 +162,12 @@ if (isset($_GET['delivery'])) {
 if (isset($_GET['p_delete'])) {
     $id = $_GET['p_delete'];
     $delete = "DELETE FROM `products` WHERE `product_id` = '$id'";
-    $result = mysqli_query($conn, $delete);
-    if ($result) {
-        // echo '<script>windonws</script>';
-        header("Location: view-product.php");
-    }
+    echo  mysqli_query($conn, $delete) or die();
+
+    // if ($result) {
+    //     // echo '<script>windonws</script>';
+    //     header("Location: view-product.php");
+    // }
 }
 //delet Stock
 if (isset($_GET['pr_id'])) {
