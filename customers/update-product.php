@@ -14,7 +14,7 @@ if (isset($_GET['p_id'])) {
 
     // Check if the delivery exists
     if (!$row) {
-        header('Location: view-product.php?msg=delivery not found');
+        header('Location: view-product.php?msg=delivery_not_found');
         exit();
     }
 }
@@ -33,10 +33,10 @@ if (isset($_POST['up_product'])) {
 
     $res = mysqli_query($conn, $sql);
     if ($res) {
-        header('Location: view-product.php?msg=Product updated successfully');
+        header('Location: view-product.php?msg=Product_updated_successfully');
         exit();
     } else {
-        header('Location: view-product.php?msg=Product not updated');
+        header('Location: view-product.php?msg=Product_not_updated');
         exit();
     }
 }

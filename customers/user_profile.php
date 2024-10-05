@@ -219,7 +219,7 @@
                                              </div>';
                                     }
                                 } else {
-                                    echo "Error fetching user data: " . mysqli_error($conn);
+                                    echo "Error fetching customer data: " . mysqli_error($conn);
                                 }
                             }
 

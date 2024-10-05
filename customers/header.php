@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "config.php";
+ob_start();
+
 if (!isset($_SESSION['userId'])) {
   header('location:login.php');
   exit();
@@ -90,7 +92,9 @@ if (!isset($_SESSION['userId'])) {
               <h6><?php if (isset($_SESSION['username'])) {
                     echo $_SESSION['username'];
                   } ?></h6>
-              <span>Web Designer</span>
+              <span><?php if (isset($_SESSION['userlname'])) {
+                      echo $_SESSION['userlname'];
+                    } ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -169,7 +173,11 @@ if (!isset($_SESSION['userId'])) {
               <i class="bi bi-circle"></i><span>View Order Details</span>
             </a>
           </li>
-
+          <li>
+            <a href="add-details.php">
+              <i class="bi bi-circle"></i><span>Add Order Details</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Forms Nav -->
 

@@ -16,10 +16,10 @@ if (isset($_POST['up_order'])) {
 
     $res = mysqli_query($conn, $sql);
     if ($res) {
-        header('Location: view-order.php?msg=Order updated successfully');
+        header('Location: view-orders.php?msg=Order_updated_successfully');
         exit();
     } else {
-        header('Location: view-order.php?msg=Order not updated');
+        header('Location: view-orders.php?msg=Order_not_updated');
         exit();
     }
 }
@@ -63,10 +63,10 @@ if (isset($_POST['up_order'])) {
                     $res = mysqli_query($conn, $sql);
                     while ($data = mysqli_fetch_array($res)) {
                     ?>
-
-                        <option value="<?php echo $data['customer_id']; ?>">
+                        <option value="<?php echo $data['customer_id']; ?>" <?php echo ($data['customer_id'] == $row['customer_id']) ? 'selected' : ''; ?>>
                             <?php echo $data['customer_id']; ?>
                         </option>
+
                     <?php
                     }
                     ?>

@@ -76,6 +76,8 @@ session_start();
         while ($data = mysqli_fetch_assoc($res)) {
           $_SESSION['userId'] = $data['customer_id'];
           $_SESSION['username'] = $data['firstname'];
+          $_SESSION['userlname'] = $data['lastname'];
+
           $_SESSION['userpic'] = $data['pic'];
         }
 

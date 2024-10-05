@@ -21,6 +21,7 @@ if (isset($_GET['msg'])) {
       <th scope="col">Price</th>
       <th scope="col">Customer Name</th>
       <th scope="col">Order Date</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -61,6 +62,14 @@ if (isset($_GET['msg'])) {
         <td><?php echo $data['price']; ?></td>
         <td><?php echo $data['firstname']; ?></td>
         <td><?php echo $data['order_date']; ?></td>
+        <td>
+
+          <a href="function.php?detail_delete=<?php echo $data['orderDetail_id'] ?>"><i class="bi bi-trash-fill text-danger"></i></a>
+          <a href="update-details.php?detail=<?php echo $data['orderDetail_id'] ?>"><i class="bx bxs-edit text-success"></i></a>
+
+
+          <a href="add-details.php"> <i class="bx bxs-pencil"></i></a>
+        </td>
       </tr>
     <?php
     }

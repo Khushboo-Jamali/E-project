@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'header.php';
 
 // Ensure to connect to the database
@@ -17,9 +18,9 @@ if (isset($_POST['add_deliverie'])) {
     $res = mysqli_query($conn, $sql);
 
     if ($res) {
-        header('Location: add-order.php?msg=Delivery added successfully');
+        header('Location: add-deliverie.php?msg=Delivery_added_successfully');
     } else {
-        header('Location: add-order.php?msg=Delivery not added');
+        header('Location: add-deliverie.php?msg=Delivery not added');
     }
 }
 ?>
@@ -59,5 +60,6 @@ if (isset($_POST['add_deliverie'])) {
 </div>
 
 <?php
+ob_end_flush();
 include 'footer.php';
 ?>

@@ -12,7 +12,7 @@ if (isset($_POST['add_stock'])) {
     VALUES ('$quantity','$Cname') ";
     $res = mysqli_query($conn, $sql);
     if ($res) {
-        header('location:add-stock.php?msg=Order added successfully');
+        header('Location: add-stock.php?msg=Stock added successfully');
     } else {
         header('location:add-stock.php?msg=Order not added');
     }
