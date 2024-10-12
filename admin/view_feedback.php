@@ -7,7 +7,7 @@ include "config.php ";
 <div
     class="table-responsive">
     <table
-        class="table table-primary">
+        class="table table">
         <thead>
             <tr>
                 <th scope="col">Id</th>

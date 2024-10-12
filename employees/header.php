@@ -1,6 +1,8 @@
 <?php
 session_start();
 include "config.php";
+ob_start();
+
 if (!isset($_SESSION['userId'])) {
   header('location:login.php');
   exit();
@@ -54,9 +56,9 @@ if (!isset($_SESSION['userId'])) {
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="dashboard.php" class="logo d-flex align-items-center">
-        <img src="assets/img/apple-touch-icon.png" alt="">
-        <span class="d-none d-lg-block">Admin Dashboard</span>
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="./assets/img/apple-touch-icon.png" alt="">
+        <span class="d-none d-lg-block">Customer</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -90,14 +92,16 @@ if (!isset($_SESSION['userId'])) {
               <h6><?php if (isset($_SESSION['username'])) {
                     echo $_SESSION['username'];
                   } ?></h6>
-              <span>Web Designer</span>
+              <span><?php if (isset($_SESSION['userlname'])) {
+                      echo $_SESSION['userlname'];
+                    } ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="admin_profile.php">
+              <a class="dropdown-item d-flex align-items-center" href="user_profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -138,18 +142,19 @@ if (!isset($_SESSION['userId'])) {
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#ambulance-nav" data-bs-toggle="collapse" href="">
-          <i class="bi bi-journal-text"></i><span>Ambulance</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#emp-nav" data-bs-toggle="collapse" href="">
+          <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="ambulance-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="emp-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="add_ambulance.php">
-              <i class="bi bi-circle"></i><span>Add Ambulance</span>
+            <a href="add-order.php">
+              <i class="bi bi-circle"></i><span>Add Order</span>
             </a>
           </li>
+
           <li>
-            <a href="view_ambulance.php">
-              <i class="bi bi-circle"></i><span>View Ambulance</span>
+            <a href="view-orders.php">
+              <i class="bi bi-circle"></i><span>View Orders</span>
             </a>
           </li>
 
@@ -158,32 +163,40 @@ if (!isset($_SESSION['userId'])) {
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#driver-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Driver</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#de-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Order Details</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="driver-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="add_driver.php">
-              <i class="bi bi-circle"></i><span>Add Driver</span>
-            </a>
-          </li>
-          <li>
-            <a href="view_driver.php">
-              <i class="bi bi-circle"></i><span>View Driver</span>
-            </a>
-          </li>
+        <ul id="de-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
+          <li>
+            <a href="view_details.php">
+              <i class="bi bi-circle"></i><span>View Order Details</span>
+            </a>
+          </li>
+          <li>
+            <a href="add-details.php">
+              <i class="bi bi-circle"></i><span>Add Order Details</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Forms Nav -->
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#pat-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Emergency Request</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Deliveries</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="pat-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
           <li>
-            <a href="view_request.php">
-              <i class="bi bi-circle"></i><span>View Request</span>
+            <a href="add-deliverie.php">
+              <i class="bi bi-circle"></i><span>Add Deliveries</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="view-deliverie.php">
+              <i class="bi bi-circle"></i><span>View Deliveries</span>
             </a>
           </li>
 
@@ -192,23 +205,41 @@ if (!isset($_SESSION['userId'])) {
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#dis-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Emt</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="dis-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="add_emt.php">
-              <i class="bi bi-circle"></i><span>Add Emt</span>
+            <a href="add-product.php">
+              <i class="bi bi-circle"></i><span>Add Product</span>
             </a>
           </li>
           <li>
-            <a href="view_emt.php">
-              <i class="bi bi-circle"></i><span>View Emt</span>
+            <a href="view-product.php">
+              <i class="bi bi-circle"></i><span>View Products</span>
             </a>
           </li>
 
         </ul>
       </li><!-- End Forms Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#st-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Stock</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="st-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add-stock.php">
+              <i class="bi bi-circle"></i><span>Add Stock</span>
+            </a>
+          </li>
+          <li>
+            <a href="view-stock.php">
+              <i class="bi bi-circle"></i><span>View Stocks</span>
+            </a>
+          </li>
+
+        </ul>
+      </li><!-- End Forms Nav -->
 
 
 
@@ -225,7 +256,8 @@ if (!isset($_SESSION['userId'])) {
           </li>
 
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>
+      <!-- End Forms Nav -->
 
 
 

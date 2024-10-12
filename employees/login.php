@@ -69,13 +69,15 @@ session_start();
       $id = $_POST['id'];
       $email = $_POST['email'];
       $password = md5($_POST['password']);
-      $sql = "SELECT * FROM users WHERE email='$email' AND password = '$password'";
+      $sql = "SELECT * FROM employees WHERE email='$email' AND password = '$password'";
       $res = mysqli_query($conn, $sql);
       $row = mysqli_num_rows($res);
       if ($row > 0) {
         while ($data = mysqli_fetch_assoc($res)) {
-          $_SESSION['userId'] = $data['user_id'];
-          $_SESSION['username'] = $data['firstname'];
+          $_SESSION['userId'] = $data['employee_id'];
+          $_SESSION['username'] = $data['first_name'];
+          $_SESSION['userlname'] = $data['last_name'];
+
           $_SESSION['userpic'] = $data['pic'];
         }
 
@@ -138,10 +140,13 @@ session_start();
                         <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
                         <label class="form-check-label" for="rememberMe">Remember me</label>
 
+
+
                       </div>
                     </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" name="login" type="submit">Login</button>
+                      Create Account <a href="./signup.php" class="my-2"> Sign Up</a>
                     </div>
 
                   </form>
