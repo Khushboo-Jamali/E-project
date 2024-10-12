@@ -5,7 +5,7 @@
 session_start();
 include "config.php";
 
-// customer profile update
+// employee profile update
 if (isset($_POST['up_emp'])) {
     $id = $_POST['id'];
     $fname = $_POST['fname'];
