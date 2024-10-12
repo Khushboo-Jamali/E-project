@@ -64,15 +64,7 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// if (isset($_GET['delete_id'])) {
-//     $p_id = $_GET['delete_id'];
-//     $delete = "DELETE FROM `products` WHERE product_id  = '$p_id'";
-//     $result = mysqli_query($conn, $delete);
-//     if ($result == true) {
-//         header("location:view-product.php");
-//     }
-// }
-//delet Stock
+
 if (isset($_GET['pr_id'])) {
     $id = $_GET['pr_id'];
     $del = "DELETE FROM `stock` WHERE stock_id = '$id'";
