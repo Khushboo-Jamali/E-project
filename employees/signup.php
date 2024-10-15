@@ -7,8 +7,7 @@ if (isset($_POST["signup"])) {
     $email = $_POST["email"];
     $password = md5($_POST['password']);
     $contact = $_POST['phone'];
-    // $dob = $_POST['dob'];
-    $address = $_POST['add'];
+
     $img_name = $_FILES["img"]["name"];
     $tmp_name = $_FILES["img"]["tmp_name"];
     $type = $_FILES["img"]["type"];
@@ -22,8 +21,8 @@ if (isset($_POST["signup"])) {
                 $newName = uniqid('', true) . $file_ext;
                 $folder = "images/" . $newName;
                 move_uploaded_file($tmp_name, $folder);
-                $stmt = $conn->prepare("INSERT INTO customers (firstname,lastname, email, password, phone,  address, pic) VALUES (?,?,?,?,?,?,?)");
-                $stmt->bind_param("sssssss", $fname, $lname, $email, $password, $contact, $address, $folder);
+                $stmt = $conn->prepare("INSERT INTO customers (first_name,last_name, email, password, phone, pic) VALUES (?,?,?,?,?,?,?)");
+                $stmt->bind_param("sssssss", $fname, $lname, $email, $password, $contact,  $folder);
 
                 if ($stmt->execute()) {
                     header("Location: signup.php?msg=signup-successfully");
@@ -117,7 +116,7 @@ if (isset($_POST["signup"])) {
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Create Account To Book An Ambulance</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">Add New Employee Account</h5>
                                         <!-- <p class="text-center small">Fill This Form</p> -->
                                     </div>
 
@@ -150,10 +149,6 @@ if (isset($_POST["signup"])) {
                                         </div>
 
 
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Address</label>
-                                            <textarea class="form-control" name="add" id="" rows="3"></textarea>
-                                        </div>
 
                                         <div class="mb-3">
                                             <label for="" class="form-label">Choose file</label>
