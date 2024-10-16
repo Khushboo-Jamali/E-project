@@ -56,8 +56,8 @@ if (isset($_POST["signup"])) {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="images/logo.png" rel="icon">
-    <link href="images/logo.png" rel="images/logo.png">
+    <link href="./images/logo2.png" rel="icon">
+    <link href="./images/logo2.png" rel="images/logo.png">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">

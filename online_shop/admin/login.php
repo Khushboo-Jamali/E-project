@@ -15,7 +15,7 @@ session_start();
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/apple-touch-icon.png" rel="icon">
+  <link href="./images/logo2.png" rel="icon">
   <link href="" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
