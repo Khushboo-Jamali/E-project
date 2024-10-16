@@ -69,12 +69,12 @@ session_start();
       $id = $_POST['id'];
       $email = $_POST['email'];
       $password = md5($_POST['password']);
-      $sql = "SELECT * FROM customers WHERE email='$email' AND password = '$password'";
+      $sql = "SELECT * FROM users WHERE email='$email' AND password = '$password'";
       $res = mysqli_query($conn, $sql);
       $row = mysqli_num_rows($res);
       if ($row > 0) {
         while ($data = mysqli_fetch_assoc($res)) {
-          $_SESSION['userId'] = $data['customer_id'];
+          $_SESSION['userId'] = $data['user_id'];
           $_SESSION['username'] = $data['firstname'];
           $_SESSION['userlname'] = $data['lastname'];
 

@@ -6,7 +6,7 @@ session_start();
 include "config.php";
 
 // customer profile update
-if (isset($_POST['up_customer'])) {
+if (isset($_POST['up_user'])) {
     $id = $_POST['id'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -17,13 +17,13 @@ if (isset($_POST['up_customer'])) {
     $tmp_name = $_FILES['img']['tmp_name'];
     $folder = "images/" . $img_name;
     if (move_uploaded_file($tmp_name, $folder)) {
-        $sql = "UPDATE `customers` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phone`='$phone', `address`='$add' ,`pic`='$folder' WHERE customer_id ='$id'";
+        $sql = "UPDATE `users` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phonenumber`='$phone', `address`='$add' ,`pic`='$folder' WHERE user_id ='$id'";
         $qurey = mysqli_query($conn, $sql);
         if ($qurey) {
             header("location:user_profile.php");
         }
     } else {
-        $sql = "UPDATE `customers` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phone`='$phone', `address`='$add'  WHERE customer_id ='$id'";
+        $sql = "UPDATE `users` SET `firstname`='$fname',`lastname`='$lname',`email`='$email',`phonenumber`='$phone', `address`='$add'  WHERE user_id ='$id'";
         $qurey = mysqli_query($conn, $sql);
         header("location:user_profile.php");
     }

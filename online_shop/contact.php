@@ -1,3 +1,20 @@
+<?php
+include './customers/config.php';
+if (isset($_POST['addfeed'])) {
+    $fname = $_POST['fname'];
+    $email = $_POST['email'];
+    $phone = $_POST['contact'];
+    $msg = $_POST['msg'];
+    $sql = "INSERT INTO `feedback`( `fullname`, `email`, `contact`, `mesg`)
+  VALUES ('$fname','$email','$phone','$msg')";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        header('location:contact.php?Feedback_Added_Successfully');
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,17 +92,6 @@
         right: 0;
         transition: 0.5s;
     }
-
-    /* Other styles go here... */
-
-    /* SHOP SECTION */
-
-    /* .shop-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, auto));
-            gap: 1.5rem;
-        } */
-    /* ... (rest of your CSS) ... */
 
     .cart-title {
         text-align: center;
@@ -468,19 +474,21 @@
         </div>
 
         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-4 py-3 py-md-0">
-                <input type="text" class="form-control form-control" placeholder="Name">
-            </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <input type="text" class="form-control form-control" placeholder="Email">
-            </div>
-            <div class="col-md-4 py-3 py-md-0">
-                <input type="number" class="form-control form-control" placeholder="Phone">
-            </div>
-            <div class="form-group" style="margin-top: 30px;">
-                <textarea class="form-control" id="" rows="5" placeholder="Message"></textarea>
-            </div>
-            <div id="messagebtn" class="text-center"><button>Message</button></div>
+            <form action="" method="post">
+                <div class="col-md-4 py-3 py-md-0">
+                    <input type="text" class="form-control form-control" placeholder="Name" name="fname">
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <input type="text" class="form-control form-control" placeholder="Email" name="email">
+                </div>
+                <div class="col-md-4 py-3 py-md-0">
+                    <input type="number" class="form-control form-control" placeholder="Phone" name="contact">
+                </div>
+                <div class="form-group" style="margin-top: 30px;">
+                    <textarea class="form-control" id="" rows="5" placeholder="Message" name="msg"></textarea>
+                </div>
+                <div id="messagebtn" class="text-center"><button name="addfeed">Add Feedback</button></div>
+            </form>
         </div>
     </div>
     <!-- contact -->

@@ -25,16 +25,16 @@
 
         include "config.php";
         $id = $_SESSION['userId'];
-        $sel = "SELECT * FROM customers WHERE customer_id = '$id'";
+        $sel = "SELECT * FROM users WHERE user_id = '$id'";
         $res = mysqli_query($conn, $sel);
 
         while ($data = mysqli_fetch_array($res)) {
-            $_SESSION['userId'] = $data['customer_id'];
+            $_SESSION['userId'] = $data['user_id'];
             $_SESSION['userpic'] = $data['pic'];
             $_SESSION['firstname'] = $data['firstname'];
             $_SESSION['lastname'] = $data['lastname'];
             $_SESSION['address'] = $data['address'];
-            $_SESSION['phone'] = $data['phone'];
+            $_SESSION['phone'] = $data['phonenumber'];
             $_SESSION['email'] = $data['email'];
 
 
@@ -176,7 +176,7 @@
 
                                     <div class="text-center">
                                         <a href="function.php?user=<?php echo $_SESSION['userId'] ?>">
-                                            <button type="submit" name="up_customer" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" name="up_user" class="btn btn-primary">Save Changes</button>
                                         </a>
                                     </div>
                                 </form><!-- End Profile Edit Form -->
@@ -189,7 +189,7 @@
                                 $currentpass = $_POST['password'];
                                 $newpass = md5($_POST['newpassword']);
                                 $Cpass = md5($_POST['cpassword']);
-                                $sql = "SELECT password FROM customers WHERE customer_id = '$id'";
+                                $sql = "SELECT password FROM users WHERE user_id = '$id'";
                                 $res = mysqli_query($conn, $sql);
 
                                 if ($res) {
@@ -197,7 +197,7 @@
 
                                     if ($data && $data['password'] === md5($currentpass)) {
                                         if ($Cpass === $newpass) {
-                                            $updateSql = "UPDATE customers SET password='$newpass' WHERE customer_id='$id'";
+                                            $updateSql = "UPDATE users SET password='$newpass' WHERE user_id='$id'";
                                             if (mysqli_query($conn, $updateSql)) {
                                                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                                                 <strong>Success!</strong>Password changed successfully!
@@ -219,7 +219,7 @@
                                              </div>';
                                     }
                                 } else {
-                                    echo "Error fetching customer data: " . mysqli_error($conn);
+                                    echo "Error fetching user data: " . mysqli_error($conn);
                                 }
                             }
 
@@ -229,7 +229,7 @@
                                 <!-- Change Password Form -->
                                 <form action="" method="post">
                                     <div class="row mb-3 ">
-                                        <input type="hidden" name="usersid" value='<?php echo $data['customer_id'] ?>' />
+                                        <input type="hidden" name="usersid" value='<?php echo $data['user_id'] ?>' />
                                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                                         <div class="col-md-8 col-lg-9 input-box">
 
@@ -256,7 +256,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <a href='admin_profile.php?pass=<?php echo $data['customer_id'] ?>'>
+                                        <a href='user_profile.php?pass=<?php echo $data['user_id'] ?>'>
                                             <button type="submit" name="change_pass" class="btn btn-primary">Change Password</button>
                                         </a>
                                     </div>

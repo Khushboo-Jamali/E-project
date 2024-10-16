@@ -81,15 +81,13 @@ if (isset($_GET['orderid'])) {
     $del_details = "DELETE FROM `order_details` WHERE order_id = '$o_id'";
     $details_res = mysqli_query($conn, $del_details);
 
-    // Check if deletion from order_details was successful
     if ($details_res) {
-        // Then delete related records from deliveries table
+    
         $del_deliveries = "DELETE FROM `deliveries` WHERE order_id = '$o_id'";
         $deliveries_res = mysqli_query($conn, $del_deliveries);
 
-        // Check if deletion from deliveries was successful
         if ($deliveries_res) {
-            // Finally, delete the order itself
+          
             $del_order = "DELETE FROM `orders` WHERE order_id = '$o_id'";
             $order_res = mysqli_query($conn, $del_order);
             if ($order_res) {
