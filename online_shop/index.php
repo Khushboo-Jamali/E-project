@@ -403,12 +403,9 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdown"
                 style="background-color: #1c1c50">
-                <li><a class="dropdown-item" href="#">T-Shirt</a></li>
-                <li><a class="dropdown-item" href="#">Hoodies</a></li>
-                <li><a class="dropdown-item" href="#">Pants</a></li>
-                <li><a class="dropdown-item" href="#">Soprts Shoes</a></li>
-                <li><a class="dropdown-item" href="#">Smart Watch</a></li>
-                <li><a class="dropdown-item" href="#">Glasess</a></li>
+                <li><a class="dropdown-item" href="clothe.php">T-Shirt</a></li>
+                <li><a class="dropdown-item" href="clothe.php">Hoodies</a></li>
+                <li><a class="dropdown-item" href="clothe.php">Pants</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -718,9 +715,9 @@
     <hr />
     <div class="container py-4">
       <div class="copyright">
-        &copy; Copyright <strong>Fashion</strong>.All Rights Reserved
+        &copy; Copyright <strong>Online Shop</strong>.All Rights Reserved
       </div>
-      <div class="credits">Designed By <a href="#">SA coding</a></div>
+      <div class="credits">Designed By <a href="#">Aptech Students</a></div>
     </div>
   </footer>
   <!-- footer -->
